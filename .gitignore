@@ -1,0 +1,5 @@
+design.tar.gz
+lancaster-ledger/
+.vercel/
+.DS_Store
+node_modules/

@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Lancaster Ledger — A hyperlocal newsletter for Lancaster County</title>
+<meta name="description" content="A hyperlocal newsletter for Lancaster County, Pennsylvania. Mondays, Wednesdays, Fridays. Written by one guy who actually lives here." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body data-accent="terracotta" data-ink="navy" data-paper="cream">
+
+<!-- ============= MASTHEAD ============= -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-date">Thursday, April 23, 2026 • Vol. III, No. 142</div>
+    <a href="index.html" class="masthead-logo">
+      The Lancaster<span class="amp"> &amp; </span>Ledger
+    </a>
+    <nav class="masthead-nav">
+      <a href="archive.html">Archive</a>
+      <a href="subscribe.html">Subscribe</a>
+      <a href="sponsor.html">Sponsor</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+<hr class="masthead-rule" />
+
+<!-- ============= HERO ============= -->
+<section style="padding:56px 0 32px;">
+  <div class="container hero-grid">
+    <div>
+      <div class="kicker" style="margin-bottom:20px;">
+        <span data-live="issue-no">Issue N<sup style="font-size:0.7em;">o</sup> 142</span>
+        &nbsp;·&nbsp;
+        <span data-live="issue-date">Wednesday morning</span>
+      </div>
+      <h1 data-live="hero-title" class="hero-title">
+        The last <em style="color:var(--accent);">banh&nbsp;mi</em> at Sprout,
+        a bakery on Orange, and one honest weather take.
+      </h1>
+      <p data-live="hero-opener" class="hero-opener">
+        Good morning, Lancaster. If you've been putting off one last banh mi
+        from Sprout because you'd get to it next week — we have bad news.
+        Saturday is the last day.
+      </p>
+      <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap;">
+        <a href="issue.html" data-live="latest-link" class="btn btn-accent">Read today's issue →</a>
+        <a href="archive.html" class="btn btn-ghost">Browse the archive</a>
+      </div>
+
+      <div class="hero-stats">
+        <span data-stat="subscribers"><strong>552</strong> subscribers</span>
+        <span><strong>Mon / Wed / Fri</strong> at 6:30am</span>
+        <span data-stat="latest-issue" style="color:var(--accent);"><strong>Live from Beehiiv</strong> · auto-updates at 6 AM</span>
+      </div>
+    </div>
+
+    <div style="position:relative;">
+      <div class="photo photo-terracotta" style="aspect-ratio:4 / 5; border-radius:2px;">
+        <div class="photo-caption">
+          <small>Photo</small>
+          The Fulton marquee at dusk, Prince Street — slow shutter, warm streetlight
+        </div>
+      </div>
+      <div class="hero-pullquote">
+        "Finally, a newsletter that gets Lancaster."
+        <div class="hero-pullquote-attr">— Reader, 17522</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= ORNAMENT ============= -->
+<div class="ornament"><span class="ornament-mark">❦</span></div>
+
+<!-- ============= TODAY'S BULLETS ============= -->
+<section style="padding:72px 0 40px;">
+  <div class="container today-grid">
+    <div>
+      <div class="kicker kicker-ink">In today's issue</div>
+      <h2 class="today-h2">What you'll find in your inbox this morning.</h2>
+    </div>
+    <div>
+      <ol data-live="today-bullets" class="today-list">
+        <li><span class="num">01</span><span>Sprout Vietnamese on Prince closes Saturday after ten years — the family consolidates at Rice &amp; Noodles</span></li>
+        <li><span class="num">02</span><span>Scratch House opens Friday at 144 E. Orange (spoiler: the morning bun is worth the 5am alarm)</span></li>
+        <li><span class="num">03</span><span>The school board meets Tuesday and the $3.2M budget fight is going to be loud</span></li>
+        <li><span class="num">04</span><span>Four bands worth your Friday night — and one you can safely skip</span></li>
+        <li><span class="num">05</span><span>A rain map for the weekend, written in English, not meteorology</span></li>
+      </ol>
+      <a href="issue.html" class="link-arrow">Read the whole issue →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============= SUBSCRIBE BLOCK ============= -->
+<section class="subscribe-block">
+  <div class="subscribe-frame"></div>
+  <div class="container subscribe-inner">
+    <div class="kicker" style="color:var(--accent-soft);">Free forever · 552 readers</div>
+    <h2 class="subscribe-h2">
+      Get Lancaster in your inbox, three <em>mornings</em> a week.
+    </h2>
+    <p class="subscribe-lede">
+      News, food, music, and the occasional opinion you didn't ask for.
+      Written by one guy who actually lives here.
+    </p>
+    <div style="display:flex; justify-content:center;">
+      <form class="sub-form" id="hero-sub-form">
+        <input class="input" type="email" required placeholder="your@email.com" name="email" />
+        <button class="btn btn-accent" type="submit">Subscribe</button>
+      </form>
+      <div id="hero-sub-done" class="sub-done" hidden>
+        Got you. Check your inbox — first issue lands Monday morning. ↗
+      </div>
+    </div>
+    <div class="subscribe-footnote">
+      Powered by Beehiiv. Unsubscribe anytime. Never sold, never shared.
+    </div>
+  </div>
+</section>
+
+<!-- ============= RECENT ISSUES ============= -->
+<section style="padding:40px 0;">
+  <div class="container">
+    <div class="recent-head">
+      <div>
+        <div class="kicker kicker-ink">Back issues</div>
+        <h2 class="recent-h2">On the rack.</h2>
+      </div>
+      <a href="archive.html" class="link-arrow">See all 142 issues →</a>
+    </div>
+
+    <div class="recent-grid">
+      <a href="issue.html" class="recent-card">
+        <div class="recent-date">Wed, Apr 22</div>
+        <h3 class="recent-title">The last banh mi at Sprout, a new bakery on Orange, and one honest weather take.</h3>
+        <ul class="recent-bullets">
+          <li><span>›</span><span>Sprout closes Saturday after ten years on Prince</span></li>
+          <li><span>›</span><span>Scratch House opens Friday at 144 E. Orange</span></li>
+          <li><span>›</span><span>Rain all weekend — plan around it</span></li>
+        </ul>
+      </a>
+      <a href="issue.html" class="recent-card">
+        <div class="recent-date">Mon, Apr 20</div>
+        <h3 class="recent-title">Central Market's new stallholder, a $3.2M school budget fight, and where to eat scrapple.</h3>
+        <ul class="recent-bullets">
+          <li><span>›</span><span>Pierogi Mama takes over the corner stand</span></li>
+          <li><span>›</span><span>School board meets Tuesday — it'll get loud</span></li>
+          <li><span>›</span><span>Four diners, ranked, for a Sunday morning</span></li>
+        </ul>
+      </a>
+      <a href="issue.html" class="recent-card">
+        <div class="recent-date">Fri, Apr 17</div>
+        <h3 class="recent-title">A Friday roundup: First Friday picks, Amish country traffic, and one hill to die on.</h3>
+        <ul class="recent-bullets">
+          <li><span>›</span><span>Seven First Friday openings worth your time</span></li>
+          <li><span>›</span><span>Route 340 is going to be a parking lot — take 741</span></li>
+          <li><span>›</span><span>Cheese-on-cheese is a breakfast food. Fight me.</span></li>
+        </ul>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============= ORNAMENT ============= -->
+<div class="ornament"><span class="ornament-mark">§</span></div>
+
+<!-- ============= SPONSORS ============= -->
+<section style="padding:80px 0 40px;">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:48px;">
+      <div class="kicker kicker-ink">Who pays for this</div>
+      <h2 class="sponsor-h2">Supported by local businesses we actually like.</h2>
+    </div>
+
+    <div class="sponsor-grid">
+      <div class="sponsor-cell">
+        <div class="sponsor-name">Central Market</div>
+        <div class="sponsor-tag">Since 1730</div>
+      </div>
+      <div class="sponsor-cell">
+        <div class="sponsor-name">Rice &amp; Noodles</div>
+        <div class="sponsor-tag">Lititz Pike</div>
+      </div>
+      <div class="sponsor-cell">
+        <div class="sponsor-name">Zoetropolis Cinema</div>
+        <div class="sponsor-tag">Water Street</div>
+      </div>
+      <div class="sponsor-cell">
+        <div class="sponsor-name">Prince St. Cafe</div>
+        <div class="sponsor-tag">Coffee + biscuits</div>
+      </div>
+      <div class="sponsor-cell">
+        <div class="sponsor-name">Square One Coffee</div>
+        <div class="sponsor-tag">Three locations</div>
+      </div>
+      <div class="sponsor-cell">
+        <div class="sponsor-name">Lancaster Brewing</div>
+        <div class="sponsor-tag">Plum Street</div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:40px;">
+      <a href="sponsor.html" class="btn btn-ghost">Reach 552 Lancastrians →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============= FOOTER ============= -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">The Lancaster<span class="amp"> &amp; </span>Ledger</div>
+      <p class="footer-desc">
+        A hyperlocal newsletter for Lancaster County, Pennsylvania.
+        Mondays, Wednesdays, Fridays. Written by a guy who actually lives here.
+      </p>
+      <div style="margin-top:20px; font-size:13px; color:var(--ink-mute);">
+        <a href="mailto:collin@thelancasterledger.com" style="text-decoration:none;">
+          collin@thelancasterledger.com
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Read</h4>
+      <ul>
+        <li><a href="archive.html">Archive</a></li>
+        <li><a href="issue.html">Latest issue</a></li>
+        <li><a href="subscribe.html">Subscribe</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Business</h4>
+      <ul>
+        <li><a href="sponsor.html">Sponsor</a></li>
+        <li><a href="sponsor.html">Rates</a></li>
+        <li><a href="mailto:collin@thelancasterledger.com">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>About</h4>
+      <ul>
+        <li><a href="about.html">Collin</a></li>
+        <li><a href="about.html">Mission</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 The Lancaster Ledger, LLC. Lancaster, PA.</span>
+    <span>Built with care, powered by Beehiiv.</span>
+  </div>
+</footer>
+
+<!-- ============= FLOATING SUBSCRIBE BAR ============= -->
+<div class="sub-bar" id="sub-bar">
+  <strong>Reading something you like?</strong>
+  <span style="opacity:0.85;">Get it in your inbox three mornings a week.</span>
+  <a href="subscribe.html">Subscribe free →</a>
+  <button class="close" id="sub-bar-close" aria-label="dismiss">×</button>
+</div>
+
+<!-- ============= PAGE-LEVEL STYLES ============= -->
+<style>
+  /* Hero */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .hero-title {
+    font-size: clamp(42px, 5.2vw, 72px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+  .hero-opener {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 36px;
+    max-width: 560px;
+  }
+  .hero-stats {
+    margin-top: 44px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    gap: 32px;
+    font-size: 13px;
+    color: var(--ink-mute);
+    flex-wrap: wrap;
+  }
+  .hero-stats strong { color: var(--ink); }
+  .hero-pullquote {
+    position: absolute;
+    bottom: -24px;
+    left: -24px;
+    background: var(--paper);
+    padding: 14px 18px;
+    border: 1px solid var(--rule-strong);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    max-width: 220px;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .hero-pullquote-attr {
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 8px;
+  }
+
+  /* Today bullets */
+  .today-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+  }
+  .today-h2 {
+    font-size: 36px;
+    line-height: 1.05;
+    font-family: var(--serif);
+    font-style: italic;
+    margin-top: 12px;
+  }
+  .today-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .today-list li {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--serif);
+    font-size: 20px;
+    line-height: 1.45;
+    align-items: baseline;
+  }
+  .today-list li:first-child { border-top: 1px solid var(--rule); }
+  .today-list .num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .today-list .live-bullet {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--serif);
+    font-size: 20px;
+    line-height: 1.45;
+    align-items: baseline;
+  }
+  .today-list .live-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .link-arrow {
+    display: inline-block;
+    margin-top: 28px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 4px;
+  }
+
+  /* Subscribe block */
+  .subscribe-block {
+    margin: 64px 0;
+    padding: 80px 32px;
+    background: var(--ink);
+    color: var(--paper);
+    position: relative;
+    overflow: hidden;
+  }
+  .subscribe-frame {
+    position: absolute;
+    top: 16px; left: 16px; right: 16px; bottom: 16px;
+    border: 1px solid rgba(244,237,224,0.2);
+    pointer-events: none;
+  }
+  .subscribe-inner { position: relative; text-align: center; }
+  .subscribe-h2 {
+    font-size: clamp(38px, 4.5vw, 60px);
+    color: var(--paper);
+    margin-top: 16px;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .subscribe-h2 em {
+    color: var(--accent-soft);
+    font-style: italic;
+  }
+  .subscribe-lede {
+    font-family: var(--serif);
+    font-size: 19px;
+    color: rgba(244,237,224,0.75);
+    max-width: 560px;
+    margin: 0 auto 36px;
+    line-height: 1.5;
+  }
+  .subscribe-footnote {
+    margin-top: 20px;
+    font-size: 12px;
+    color: rgba(244,237,224,0.55);
+    letter-spacing: 0.05em;
+  }
+  .sub-done {
+    padding: 16px 20px;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 2px;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink);
+    max-width: 440px;
+  }
+
+  /* Recent issues */
+  .recent-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .recent-h2 {
+    font-size: 36px;
+    font-family: var(--serif);
+    font-style: italic;
+    margin-top: 8px;
+  }
+  .recent-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--rule);
+  }
+  .recent-card {
+    padding: 28px 32px 32px;
+    border-right: 1px solid var(--rule);
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+  }
+  .recent-card:last-child { border-right: none; }
+  .recent-card:hover { background: var(--paper-2); color: var(--ink); }
+  .recent-date {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .recent-title {
+    font-size: 22px;
+    line-height: 1.2;
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .recent-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-mute);
+    font-family: var(--sans);
+  }
+  .recent-bullets li {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .recent-bullets li > span:first-child { color: var(--accent); }
+
+  /* Sponsors */
+  .sponsor-h2 {
+    font-size: 36px;
+    font-family: var(--serif);
+    font-style: italic;
+    margin-top: 8px;
+    letter-spacing: -0.02em;
+  }
+  .sponsor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--rule-strong);
+    border-radius: 2px;
+  }
+  .sponsor-cell {
+    padding: 40px 24px;
+    text-align: center;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .sponsor-cell:nth-child(3n) { border-right: none; }
+  .sponsor-cell:nth-last-child(-n+3) { border-bottom: none; }
+  .sponsor-name {
+    font-family: var(--serif);
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .sponsor-tag {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  /* Mobile */
+  @media (max-width: 860px) {
+    .hero-grid,
+    .today-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .recent-grid,
+    .sponsor-grid {
+      grid-template-columns: 1fr;
+    }
+    .recent-card {
+      border-right: none;
+      border-bottom: 1px solid var(--rule);
+    }
+    .recent-card:last-child { border-bottom: none; }
+    .sponsor-cell {
+      border-right: none !important;
+    }
+    .sponsor-cell:last-child { border-bottom: none; }
+    .recent-head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .hero-pullquote { left: 0; bottom: -16px; }
+  }
+</style>
+
+<!-- ============= INTERACTIONS ============= -->
+<script>
+  // Subscribe form: replace with success message on submit (mock — swap for Beehiiv embed)
+  (function () {
+    const form = document.getElementById('hero-sub-form');
+    const done = document.getElementById('hero-sub-done');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      form.hidden = true;
+      done.hidden = false;
+    });
+  })();
+
+  // Floating subscribe bar: appears after 800px scroll, dismissible
+  (function () {
+    const bar = document.getElementById('sub-bar');
+    const close = document.getElementById('sub-bar-close');
+    if (!bar) return;
+    let dismissed = false;
+    function onScroll() {
+      if (dismissed) return;
+      bar.classList.toggle('visible', window.scrollY > 800);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    close.addEventListener('click', function () {
+      dismissed = true;
+      bar.classList.remove('visible');
+    });
+  })();
+</script>
+
+<!-- ============= BEEHIIV LIVE HYDRATION ============= -->
+<!-- Set this to your proxy origin once deployed. Empty string = same origin. -->
+<script>window.__LEDGER_API = "";</script>
+<script src="beehiiv.js"></script>
+
+</body>
+</html>
