@@ -17,15 +17,15 @@
 <!-- ============= MASTHEAD ============= -->
 <header class="masthead">
   <div class="masthead-inner">
-    <div class="masthead-date">Thursday, April 23, 2026 • Vol. III, No. 142</div>
+    <div class="masthead-date" data-live="masthead-date">Monday, May 4, 2026 • Vol. III, No. 36</div>
     <a href="index.html" class="masthead-logo">
       The Lancaster<span class="amp"> &amp; </span>Ledger
     </a>
     <nav class="masthead-nav">
-      <a href="archive.html">Archive</a>
-      <a href="subscribe.html">Subscribe</a>
-      <a href="sponsor.html">Sponsor</a>
-      <a href="about.html">About</a>
+      <a href="https://thelancasterledger.beehiiv.com" target="_blank" rel="noopener">Archive</a>
+      <a href="#subscribe">Subscribe</a>
+      <a href="mailto:collin@thelancasterledger.com?subject=Sponsorship%20inquiry">Sponsor</a>
+      <a href="mailto:collin@thelancasterledger.com">Contact</a>
     </nav>
   </div>
 </header>
@@ -40,9 +40,8 @@
         &nbsp;·&nbsp;
         <span data-live="issue-date">Wednesday morning</span>
       </div>
-      <h1 data-live="hero-title" class="hero-title">
-        The last <em style="color:var(--accent);">banh&nbsp;mi</em> at Sprout,
-        a bakery on Orange, and one honest weather take.
+      <h1 class="hero-title">
+        In The Latest Edition Of <em style="color:var(--accent);">The Lancaster Ledger</em>...
       </h1>
       <p data-live="hero-opener" class="hero-opener">
         Good morning, Lancaster. If you've been putting off one last banh mi
@@ -50,28 +49,19 @@
         Saturday is the last day.
       </p>
       <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap;">
-        <a href="issue.html" data-live="latest-link" class="btn btn-accent">Read today's issue →</a>
-        <a href="archive.html" class="btn btn-ghost">Browse the archive</a>
+        <a href="https://thelancasterledger.beehiiv.com" target="_blank" rel="noopener" data-live="latest-link" class="btn btn-accent">Read today's issue →</a>
+        <a href="https://thelancasterledger.beehiiv.com" target="_blank" rel="noopener" class="btn btn-ghost">Browse the archive</a>
       </div>
 
       <div class="hero-stats">
-        <span data-stat="subscribers"><strong>552</strong> subscribers</span>
-        <span><strong>Mon / Wed / Fri</strong> at 6:30am</span>
-        <span data-stat="latest-issue" style="color:var(--accent);"><strong>Live from Beehiiv</strong> · auto-updates at 6 AM</span>
+        <span data-stat="subscribers"><strong>3,053</strong> subscribers</span>
+        <span><strong>Mon / Wed / Fri</strong> at 6 AM</span>
       </div>
     </div>
 
     <div style="position:relative;">
-      <div class="photo photo-terracotta" style="aspect-ratio:4 / 5; border-radius:2px;">
-        <div class="photo-caption">
-          <small>Photo</small>
-          The Fulton marquee at dusk, Prince Street — slow shutter, warm streetlight
-        </div>
-      </div>
-      <div class="hero-pullquote">
-        "Finally, a newsletter that gets Lancaster."
-        <div class="hero-pullquote-attr">— Reader, 17522</div>
-      </div>
+      <img src="hero-illustration.jpg" alt="The Lancaster Ledger — illustrated corvette outside a brick rowhouse with a flowering tree" style="display:block; width:100%; aspect-ratio:1 / 1; object-fit:contain; opacity:0.55; mix-blend-mode:multiply;" />
+      <div style="text-align:center; margin-top:8px; font-family:var(--serif); font-style:italic; font-size:14px; letter-spacing:0.04em; color:var(--ink-mute);">Lancaster, PA</div>
     </div>
   </div>
 </section>
@@ -94,16 +84,16 @@
         <li><span class="num">04</span><span>Four bands worth your Friday night — and one you can safely skip</span></li>
         <li><span class="num">05</span><span>A rain map for the weekend, written in English, not meteorology</span></li>
       </ol>
-      <a href="issue.html" class="link-arrow">Read the whole issue →</a>
+      <a href="https://thelancasterledger.beehiiv.com" target="_blank" rel="noopener" data-live="latest-link" class="link-arrow">Read the whole issue →</a>
     </div>
   </div>
 </section>
 
 <!-- ============= SUBSCRIBE BLOCK ============= -->
-<section class="subscribe-block">
+<section class="subscribe-block" id="subscribe">
   <div class="subscribe-frame"></div>
   <div class="container subscribe-inner">
-    <div class="kicker" style="color:var(--accent-soft);">Free forever · 552 readers</div>
+    <div class="kicker" style="color:var(--accent-soft);">Free forever · <span data-stat="subscribers"><strong>3,053</strong> readers</span></div>
     <h2 class="subscribe-h2">
       Get Lancaster in your inbox, three <em>mornings</em> a week.
     </h2>
@@ -111,17 +101,15 @@
       News, food, music, and the occasional opinion you didn't ask for.
       Written by one guy who actually lives here.
     </p>
-    <div style="display:flex; justify-content:center;">
-      <form class="sub-form" id="hero-sub-form">
-        <input class="input" type="email" required placeholder="your@email.com" name="email" />
-        <button class="btn btn-accent" type="submit">Subscribe</button>
+    <div style="display:flex; justify-content:center; flex-direction:column; align-items:center;">
+      <form class="sub-form" id="hero-sub-form" novalidate>
+        <input class="input" type="email" required placeholder="your@email.com" name="email" id="hero-sub-email" autocomplete="email" />
+        <button class="btn btn-accent" type="submit" id="hero-sub-btn">Subscribe</button>
       </form>
-      <div id="hero-sub-done" class="sub-done" hidden>
-        Got you. Check your inbox — first issue lands Monday morning. ↗
-      </div>
+      <div id="hero-sub-msg" class="sub-msg" hidden></div>
     </div>
     <div class="subscribe-footnote">
-      Powered by Beehiiv. Unsubscribe anytime. Never sold, never shared.
+      Powered by Beehiiv. Unsubscribe anytime.
     </div>
   </div>
 </section>
@@ -134,36 +122,18 @@
         <div class="kicker kicker-ink">Back issues</div>
         <h2 class="recent-h2">On the rack.</h2>
       </div>
-      <a href="archive.html" class="link-arrow">See all 142 issues →</a>
+      <a href="https://thelancasterledger.beehiiv.com" class="link-arrow">See all <span data-stat="issues">39</span> issues →</a>
     </div>
 
-    <div class="recent-grid">
-      <a href="issue.html" class="recent-card">
-        <div class="recent-date">Wed, Apr 22</div>
-        <h3 class="recent-title">The last banh mi at Sprout, a new bakery on Orange, and one honest weather take.</h3>
-        <ul class="recent-bullets">
-          <li><span>›</span><span>Sprout closes Saturday after ten years on Prince</span></li>
-          <li><span>›</span><span>Scratch House opens Friday at 144 E. Orange</span></li>
-          <li><span>›</span><span>Rain all weekend — plan around it</span></li>
-        </ul>
+    <div class="recent-grid" data-live="recent-list">
+      <a href="https://thelancasterledger.beehiiv.com" target="_blank" rel="noopener" class="recent-card">
+        <div class="recent-date">Loading…</div>
       </a>
-      <a href="issue.html" class="recent-card">
-        <div class="recent-date">Mon, Apr 20</div>
-        <h3 class="recent-title">Central Market's new stallholder, a $3.2M school budget fight, and where to eat scrapple.</h3>
-        <ul class="recent-bullets">
-          <li><span>›</span><span>Pierogi Mama takes over the corner stand</span></li>
-          <li><span>›</span><span>School board meets Tuesday — it'll get loud</span></li>
-          <li><span>›</span><span>Four diners, ranked, for a Sunday morning</span></li>
-        </ul>
+      <a href="https://thelancasterledger.beehiiv.com" target="_blank" rel="noopener" class="recent-card">
+        <div class="recent-date">Loading…</div>
       </a>
-      <a href="issue.html" class="recent-card">
-        <div class="recent-date">Fri, Apr 17</div>
-        <h3 class="recent-title">A Friday roundup: First Friday picks, Amish country traffic, and one hill to die on.</h3>
-        <ul class="recent-bullets">
-          <li><span>›</span><span>Seven First Friday openings worth your time</span></li>
-          <li><span>›</span><span>Route 340 is going to be a parking lot — take 741</span></li>
-          <li><span>›</span><span>Cheese-on-cheese is a breakfast food. Fight me.</span></li>
-        </ul>
+      <a href="https://thelancasterledger.beehiiv.com" target="_blank" rel="noopener" class="recent-card">
+        <div class="recent-date">Loading…</div>
       </a>
     </div>
   </div>
@@ -181,34 +151,34 @@
     </div>
 
     <div class="sponsor-grid">
-      <div class="sponsor-cell">
-        <div class="sponsor-name">Central Market</div>
-        <div class="sponsor-tag">Since 1730</div>
-      </div>
-      <div class="sponsor-cell">
-        <div class="sponsor-name">Rice &amp; Noodles</div>
-        <div class="sponsor-tag">Lititz Pike</div>
-      </div>
-      <div class="sponsor-cell">
-        <div class="sponsor-name">Zoetropolis Cinema</div>
-        <div class="sponsor-tag">Water Street</div>
-      </div>
-      <div class="sponsor-cell">
-        <div class="sponsor-name">Prince St. Cafe</div>
-        <div class="sponsor-tag">Coffee + biscuits</div>
-      </div>
-      <div class="sponsor-cell">
-        <div class="sponsor-name">Square One Coffee</div>
-        <div class="sponsor-tag">Three locations</div>
-      </div>
-      <div class="sponsor-cell">
-        <div class="sponsor-name">Lancaster Brewing</div>
-        <div class="sponsor-tag">Plum Street</div>
-      </div>
+      <a class="sponsor-cell" href="https://www.hinkleinsurance.com" target="_blank" rel="noopener">
+        <div class="sponsor-name">Hinkle Insurance</div>
+        <div class="sponsor-tag">Lancaster · Since 1976</div>
+      </a>
+      <a class="sponsor-cell" href="https://www.landiscommunities.org/landis-downtown-living-options/" target="_blank" rel="noopener">
+        <div class="sponsor-name">Landis Communities</div>
+        <div class="sponsor-tag">Downtown 55+ Living</div>
+      </a>
+      <a class="sponsor-cell" href="https://leatherhelp.com" target="_blank" rel="noopener">
+        <div class="sponsor-name">LeatherHelp</div>
+        <div class="sponsor-tag">Leather Restoration</div>
+      </a>
+      <a class="sponsor-cell" href="https://sundaysbloodymary.com/discount/50lancaster" target="_blank" rel="noopener">
+        <div class="sponsor-name">Sunday's Bloody Mary Mix</div>
+        <div class="sponsor-tag">Made in Lancaster</div>
+      </a>
+      <a class="sponsor-cell" href="https://www.lancasteraiguy.com" target="_blank" rel="noopener">
+        <div class="sponsor-name">Lancaster AI Guy</div>
+        <div class="sponsor-tag">Automation for small business</div>
+      </a>
+      <a class="sponsor-cell" href="mailto:collin@thelancasterledger.com?subject=Sponsorship%20inquiry">
+        <div class="sponsor-name">Your business here</div>
+        <div class="sponsor-tag">Reply to claim a slot</div>
+      </a>
     </div>
 
     <div style="text-align:center; margin-top:40px;">
-      <a href="sponsor.html" class="btn btn-ghost">Reach 552 Lancastrians →</a>
+      <a href="mailto:collin@thelancasterledger.com?subject=Sponsorship%20inquiry" class="btn btn-ghost">Reach <span data-stat="subscribers"><strong>3,053</strong></span> Lancastrians →</a>
     </div>
   </div>
 </section>
@@ -231,24 +201,17 @@
     <div class="footer-col">
       <h4>Read</h4>
       <ul>
-        <li><a href="archive.html">Archive</a></li>
-        <li><a href="issue.html">Latest issue</a></li>
-        <li><a href="subscribe.html">Subscribe</a></li>
+        <li><a href="https://thelancasterledger.beehiiv.com" target="_blank" rel="noopener">Archive</a></li>
+        <li><a href="https://thelancasterledger.beehiiv.com" target="_blank" rel="noopener" data-live="latest-link">Latest issue</a></li>
+        <li><a href="#subscribe">Subscribe</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Business</h4>
       <ul>
-        <li><a href="sponsor.html">Sponsor</a></li>
-        <li><a href="sponsor.html">Rates</a></li>
+        <li><a href="mailto:collin@thelancasterledger.com?subject=Sponsorship%20inquiry">Sponsor</a></li>
+        <li><a href="mailto:collin@thelancasterledger.com?subject=Sponsorship%20rates">Rates</a></li>
         <li><a href="mailto:collin@thelancasterledger.com">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>About</h4>
-      <ul>
-        <li><a href="about.html">Collin</a></li>
-        <li><a href="about.html">Mission</a></li>
       </ul>
     </div>
   </div>
@@ -262,7 +225,7 @@
 <div class="sub-bar" id="sub-bar">
   <strong>Reading something you like?</strong>
   <span style="opacity:0.85;">Get it in your inbox three mornings a week.</span>
-  <a href="subscribe.html">Subscribe free →</a>
+  <a href="#subscribe">Subscribe free →</a>
   <button class="close" id="sub-bar-close" aria-label="dismiss">×</button>
 </div>
 
@@ -435,15 +398,25 @@
     color: rgba(244,237,224,0.55);
     letter-spacing: 0.05em;
   }
-  .sub-done {
-    padding: 16px 20px;
-    background: var(--accent-soft);
-    border: 1px solid var(--accent);
+  .sub-msg {
+    margin-top: 18px;
+    padding: 14px 18px;
     border-radius: 2px;
     font-family: var(--serif);
     font-style: italic;
+    font-size: 16px;
+    max-width: 480px;
+    text-align: center;
+  }
+  .sub-msg.success {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
     color: var(--ink);
-    max-width: 440px;
+  }
+  .sub-msg.error {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--paper);
   }
 
   /* Recent issues */
@@ -505,6 +478,19 @@
     margin-bottom: 4px;
   }
   .recent-bullets li > span:first-child { color: var(--accent); }
+  .recent-bullets-lead {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-top: 6px;
+  }
+  .recent-bullets-lead li { margin-bottom: 12px; }
+  .recent-bullets-lead li:last-child { margin-bottom: 0; }
+  .recent-bullets-lead li > span:first-child {
+    color: var(--accent);
+    font-weight: 600;
+  }
 
   /* Sponsors */
   .sponsor-h2 {
@@ -525,7 +511,11 @@
     text-align: center;
     border-right: 1px solid var(--rule);
     border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
   }
+  .sponsor-cell:hover { background: var(--paper-2); }
   .sponsor-cell:nth-child(3n) { border-right: none; }
   .sponsor-cell:nth-last-child(-n+3) { border-bottom: none; }
   .sponsor-name {
@@ -573,15 +563,50 @@
 
 <!-- ============= INTERACTIONS ============= -->
 <script>
-  // Subscribe form: replace with success message on submit (mock — swap for Beehiiv embed)
+  // Subscribe form: POST email to /api/subscribe, server-side adds to Beehiiv.
   (function () {
     const form = document.getElementById('hero-sub-form');
-    const done = document.getElementById('hero-sub-done');
+    const btn = document.getElementById('hero-sub-btn');
+    const input = document.getElementById('hero-sub-email');
+    const msg = document.getElementById('hero-sub-msg');
     if (!form) return;
-    form.addEventListener('submit', function (e) {
+
+    function show(state, text) {
+      msg.hidden = false;
+      msg.className = 'sub-msg ' + state;
+      msg.textContent = text;
+    }
+
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
-      form.hidden = true;
-      done.hidden = false;
+      const email = (input.value || '').trim();
+      if (!email) { show('error', 'Enter your email.'); return; }
+      btn.disabled = true;
+      const original = btn.textContent;
+      btn.textContent = 'Subscribing…';
+      try {
+        const r = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const data = await r.json().catch(() => ({}));
+        if (r.ok && data.ok) {
+          form.hidden = true;
+          show('success', "You're in. Check your inbox — first issue lands at 6 AM Mon, Wed, or Fri.");
+        } else if (r.status === 429) {
+          show('error', 'Too many sign-ups from this connection. Try again in a few minutes.');
+        } else if (r.status === 400) {
+          show('error', data.error || 'That email looks off — try again.');
+        } else {
+          show('error', "Something hiccuped on our end. Try again, or email collin@thelancasterledger.com.");
+        }
+      } catch {
+        show('error', 'Network error. Try again in a sec.');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = original;
+      }
     });
   })();
 
@@ -606,7 +631,7 @@
 <!-- ============= BEEHIIV LIVE HYDRATION ============= -->
 <!-- Set this to your proxy origin once deployed. Empty string = same origin. -->
 <script>window.__LEDGER_API = "";</script>
-<script src="beehiiv.js"></script>
+<script src="beehiiv.js?v=7"></script>
 
 </body>
 </html>
