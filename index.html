@@ -577,6 +577,26 @@
       msg.textContent = text;
     }
 
+    // Capture UTM params off the page URL once — these come from Meta/etc.
+    // ads and let us attribute each subscriber back to a specific creative.
+    // Persists in sessionStorage so a user who scrolls and signs up later
+    // (or after navigating around the SPA) keeps their attribution.
+    const utmKeys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+    function captureUtm() {
+      const url = new URLSearchParams(window.location.search);
+      const out = {};
+      let any = false;
+      utmKeys.forEach((k) => {
+        const v = url.get(k);
+        if (v) { out[k] = v; any = true; }
+      });
+      if (any) try { sessionStorage.setItem('utm', JSON.stringify(out)); } catch {}
+    }
+    function readUtm() {
+      try { return JSON.parse(sessionStorage.getItem('utm') || '{}'); } catch { return {}; }
+    }
+    captureUtm();
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
       const email = (input.value || '').trim();
@@ -588,7 +608,7 @@
         const r = await fetch('/api/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({ email, ...readUtm() }),
         });
         const data = await r.json().catch(() => ({}));
         if (r.ok && data.ok) {
