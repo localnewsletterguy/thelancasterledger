@@ -67,6 +67,7 @@ module.exports = async function handler(req, res) {
   if (!EMAIL_RE.test(email) || email.length > 254) {
     return res.status(400).json({ ok: false, error: "enter a valid email" });
   }
+  const fullName = String(body.full_name || "").trim().slice(0, 100);
 
   // Forward client-side UTM tags if the visitor arrived from an ad with
   // them on the URL. Defaults preserve the prior "homepage / direct site"
@@ -83,6 +84,10 @@ module.exports = async function handler(req, res) {
     utm_term:     pick("utm_term",     ""),
   };
 
+  // Custom fields for Beehiiv — only include the ones we actually have.
+  const customFields = [];
+  if (fullName) customFields.push({ name: "Full Name", value: fullName });
+
   try {
     const r = await fetch(
       `https://api.beehiiv.com/v2/publications/${pubId}/subscriptions`,
@@ -98,6 +103,7 @@ module.exports = async function handler(req, res) {
           reactivate_existing: true,
           send_welcome_email: true,
           ...utm,
+          ...(customFields.length ? { custom_fields: customFields } : {}),
         }),
       }
     );

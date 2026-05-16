@@ -221,6 +221,26 @@
   </div>
 </footer>
 
+<!-- ============= POPUP SUBSCRIBE MODAL ============= -->
+<div class="popup-backdrop" id="popup-backdrop" hidden>
+  <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+    <button class="popup-close" id="popup-close" aria-label="Close">×</button>
+    <div class="kicker" style="color:var(--accent); margin-bottom:14px;">Before you go</div>
+    <h2 id="popup-title" class="popup-title">One quick thing.</h2>
+    <p class="popup-lede">
+      Lancaster's morning newsletter — local news, food, music, and one honest weather take.
+      Free, three mornings a week.
+    </p>
+    <form class="popup-form" id="popup-sub-form" novalidate>
+      <input class="input popup-input" type="text" required placeholder="First name" name="full_name" id="popup-sub-name" autocomplete="given-name" />
+      <input class="input popup-input" type="email" required placeholder="your@email.com" name="email" id="popup-sub-email" autocomplete="email" />
+      <button class="btn btn-accent popup-submit" type="submit" id="popup-sub-btn">Subscribe — it's free</button>
+    </form>
+    <div id="popup-sub-msg" class="sub-msg" hidden></div>
+    <div class="popup-footnote">No spam. Unsubscribe anytime.</div>
+  </div>
+</div>
+
 <!-- ============= FLOATING SUBSCRIBE BAR ============= -->
 <div class="sub-bar" id="sub-bar">
   <strong>Reading something you like?</strong>
@@ -559,6 +579,75 @@
     }
     .hero-pullquote { left: 0; bottom: -16px; }
   }
+
+  /* ============= POPUP MODAL ============= */
+  .popup-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(23, 37, 59, 0.55);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    padding: 16px;
+  }
+  .popup-backdrop.visible { opacity: 1; }
+  .popup-backdrop[hidden] { display: none; }
+  .popup {
+    background: var(--paper);
+    color: var(--ink);
+    width: 100%;
+    max-width: 440px;
+    padding: 40px 36px 32px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35), 6px 6px 0 var(--accent-deep);
+    border: 1px solid var(--rule-strong);
+    transform: scale(0.96);
+    transition: transform 0.25s ease;
+  }
+  .popup-backdrop.visible .popup { transform: scale(1); }
+  .popup-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    background: transparent;
+    border: 0;
+    font-size: 26px;
+    line-height: 1;
+    color: var(--ink-mute);
+    cursor: pointer;
+    padding: 6px 10px;
+  }
+  .popup-close:hover { color: var(--accent); }
+  .popup-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+  }
+  .popup-lede {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 0 0 24px;
+  }
+  .popup-form { display: flex; flex-direction: column; gap: 10px; }
+  .popup-input { width: 100%; }
+  .popup-submit { width: 100%; justify-content: center; }
+  .popup-footnote {
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
 </style>
 
 <!-- ============= INTERACTIONS ============= -->
@@ -623,6 +712,128 @@
         }
       } catch {
         show('error', 'Network error. Try again in a sec.');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = original;
+      }
+    });
+  })();
+
+  // Popup subscribe modal. Fires immediately for ad-traffic visitors so they
+  // see the offer without scrolling; for organic visitors waits ~25s, ~60%
+  // scroll, or exit-intent (whichever fires first). Persistent dismissal:
+  // 14 days after a close, 365 days after a successful subscribe.
+  (function () {
+    const back = document.getElementById('popup-backdrop');
+    if (!back) return;
+    const form = document.getElementById('popup-sub-form');
+    const nameI = document.getElementById('popup-sub-name');
+    const emailI = document.getElementById('popup-sub-email');
+    const btn = document.getElementById('popup-sub-btn');
+    const msg = document.getElementById('popup-sub-msg');
+    const close = document.getElementById('popup-close');
+
+    const KEY = 'll_popup_dismissed_until';
+    function suppressedUntil() {
+      try { return parseInt(localStorage.getItem(KEY) || '0', 10); } catch { return 0; }
+    }
+    function suppress(days) {
+      try { localStorage.setItem(KEY, String(Date.now() + days * 86400 * 1000)); } catch {}
+    }
+    if (Date.now() < suppressedUntil()) return;
+
+    // Pull UTM helpers from the inline subscribe block above (same scope is
+    // sealed in its IIFE, so re-read sessionStorage directly here).
+    function readUtm() {
+      try { return JSON.parse(sessionStorage.getItem('utm') || '{}'); } catch { return {}; }
+    }
+    const utm = readUtm();
+    const fromAd = (utm.utm_source || '').toLowerCase() === 'meta-ads';
+
+    let shown = false;
+    function open() {
+      if (shown) return;
+      // Don't pop if user is already focused inside the inline subscribe form.
+      if (document.activeElement && document.activeElement.closest('#hero-sub-form')) return;
+      shown = true;
+      back.hidden = false;
+      // double-rAF to let display: flex paint before transitioning opacity
+      requestAnimationFrame(() => requestAnimationFrame(() => back.classList.add('visible')));
+      setTimeout(() => { try { nameI.focus(); } catch {} }, 280);
+      document.addEventListener('keydown', onEsc);
+    }
+    function hide(persistDays) {
+      if (!shown) return;
+      back.classList.remove('visible');
+      setTimeout(() => { back.hidden = true; }, 260);
+      document.removeEventListener('keydown', onEsc);
+      if (persistDays != null) suppress(persistDays);
+    }
+    function onEsc(e) { if (e.key === 'Escape') hide(14); }
+
+    // Trigger logic
+    if (fromAd) {
+      setTimeout(open, 3000);                           // ~3s after ad arrival
+    } else {
+      setTimeout(open, 25000);                          // 25s on page
+      const onScroll = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        if (max > 0 && window.scrollY / max > 0.6) {    // 60% scroll
+          open();
+          window.removeEventListener('scroll', onScroll);
+        }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      // Exit-intent (desktop only — no mouseout on mobile)
+      document.addEventListener('mouseout', (e) => {
+        if (!e.relatedTarget && e.clientY <= 0) open();
+      });
+    }
+
+    // Close interactions
+    close.addEventListener('click', () => hide(14));
+    back.addEventListener('click', (e) => { if (e.target === back) hide(14); });
+
+    function showMsg(state, text) {
+      msg.hidden = false;
+      msg.className = 'sub-msg ' + state;
+      msg.textContent = text;
+    }
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const email = (emailI.value || '').trim();
+      const fullName = (nameI.value || '').trim();
+      if (!email) { showMsg('error', 'Enter your email.'); return; }
+      btn.disabled = true;
+      const original = btn.textContent;
+      btn.textContent = 'Subscribing…';
+      try {
+        const r = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            full_name: fullName,
+            ...readUtm(),
+            utm_medium: 'popup',           // override medium so we can filter
+          }),
+        });
+        const data = await r.json().catch(() => ({}));
+        if (r.ok && data.ok) {
+          form.hidden = true;
+          showMsg('success', "You're in. First issue lands at 6 AM Mon, Wed, or Fri.");
+          suppress(365);
+          setTimeout(() => hide(null), 2200);
+        } else if (r.status === 429) {
+          showMsg('error', 'Too many sign-ups from this connection. Try again in a few minutes.');
+        } else if (r.status === 400) {
+          showMsg('error', data.error || 'That email looks off — try again.');
+        } else {
+          showMsg('error', "Something hiccuped. Try again, or email collin@thelancasterledger.com.");
+        }
+      } catch {
+        showMsg('error', 'Network error. Try again in a sec.');
       } finally {
         btn.disabled = false;
         btn.textContent = original;
