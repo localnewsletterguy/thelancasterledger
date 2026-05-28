@@ -54,7 +54,7 @@
       </div>
 
       <div class="hero-stats">
-        <span data-stat="subscribers"><strong>3,437</strong> subscribers</span>
+        <span data-stat="subscribers"><strong>3,469</strong> subscribers</span>
         <span><strong>Mon / Wed / Fri</strong> at 6 AM</span>
       </div>
     </div>
@@ -93,7 +93,7 @@
 <section class="subscribe-block" id="subscribe">
   <div class="subscribe-frame"></div>
   <div class="container subscribe-inner">
-    <div class="kicker" style="color:var(--accent-soft);">Free forever · <span data-stat="subscribers"><strong>3,437</strong> readers</span></div>
+    <div class="kicker" style="color:var(--accent-soft);">Free forever · <span data-stat="subscribers"><strong>3,469</strong> readers</span></div>
     <h2 class="subscribe-h2">
       Get Lancaster in your inbox, three <em>mornings</em> a week.
     </h2>
@@ -150,35 +150,42 @@
       <h2 class="sponsor-h2">Supported by local businesses we actually like.</h2>
     </div>
 
-    <div class="sponsor-grid">
-      <a class="sponsor-cell" href="https://www.hinkleinsurance.com" target="_blank" rel="noopener">
-        <div class="sponsor-name">Hinkle Insurance</div>
-        <div class="sponsor-tag">Lancaster · Since 1976</div>
-      </a>
-      <a class="sponsor-cell" href="https://www.landiscommunities.org/landis-downtown-living-options/" target="_blank" rel="noopener">
-        <div class="sponsor-name">Landis Communities</div>
-        <div class="sponsor-tag">Downtown 55+ Living</div>
-      </a>
-      <a class="sponsor-cell" href="https://leatherhelp.com" target="_blank" rel="noopener">
-        <div class="sponsor-name">LeatherHelp</div>
-        <div class="sponsor-tag">Leather Restoration</div>
-      </a>
-      <a class="sponsor-cell" href="https://sundaysbloodymary.com/discount/50lancaster" target="_blank" rel="noopener">
-        <div class="sponsor-name">Sunday's Bloody Mary Mix</div>
-        <div class="sponsor-tag">Made in Lancaster</div>
-      </a>
-      <a class="sponsor-cell" href="https://www.lancasteraiguy.com" target="_blank" rel="noopener">
-        <div class="sponsor-name">Lancaster AI Guy</div>
-        <div class="sponsor-tag">Automation for small business</div>
-      </a>
+    <div class="sponsor-grid" id="sponsor-grid">
+      <!-- Sponsor cards rendered client-side from /sponsors.json (synced from dashboard on every draft save). -->
       <a class="sponsor-cell" href="mailto:collin@thelancasterledger.com?subject=Sponsorship%20inquiry">
         <div class="sponsor-name">Your business here</div>
         <div class="sponsor-tag">Reply to claim a slot</div>
       </a>
     </div>
+    <script>
+      (function () {
+        var grid = document.getElementById('sponsor-grid');
+        if (!grid) return;
+        fetch('/sponsors.json', { cache: 'no-store' })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (data) {
+            if (!data || !Array.isArray(data.sponsors) || !data.sponsors.length) return;
+            var html = data.sponsors.map(function (s) {
+              var url = s.website || ('mailto:collin@thelancasterledger.com?subject=' + encodeURIComponent('Sponsor: ' + s.business_name));
+              var tag = s.category || '';
+              var safeName = String(s.business_name || '').replace(/[<>&"']/g, '');
+              var safeTag = String(tag).replace(/[<>&"']/g, '');
+              return '<a class="sponsor-cell" href="' + url + '" target="_blank" rel="noopener">' +
+                     '<div class="sponsor-name">' + safeName + '</div>' +
+                     '<div class="sponsor-tag">' + safeTag + '</div></a>';
+            }).join('');
+            // Append the "Your business here" claim card at the end
+            html += '<a class="sponsor-cell" href="mailto:collin@thelancasterledger.com?subject=Sponsorship%20inquiry">' +
+                    '<div class="sponsor-name">Your business here</div>' +
+                    '<div class="sponsor-tag">Reply to claim a slot</div></a>';
+            grid.innerHTML = html;
+          })
+          .catch(function () { /* keep fallback "Your business here" cell */ });
+      })();
+    </script>
 
     <div style="text-align:center; margin-top:40px;">
-      <a href="mailto:collin@thelancasterledger.com?subject=Sponsorship%20inquiry" class="btn btn-ghost">Reach <span data-stat="subscribers"><strong>3,437</strong></span> Lancastrians →</a>
+      <a href="mailto:collin@thelancasterledger.com?subject=Sponsorship%20inquiry" class="btn btn-ghost">Reach <span data-stat="subscribers"><strong>3,469</strong></span> Lancastrians →</a>
     </div>
   </div>
 </section>
@@ -228,7 +235,7 @@
     <div class="kicker" style="color:var(--accent); margin-bottom:14px;">Before you go</div>
     <h2 id="popup-title" class="popup-title">One quick thing.</h2>
     <p class="popup-lede">
-      Lancaster's morning newsletter — local news, food, music, and one honest weather take.
+      Lancaster's morning newsletter — local news, food, music, and the weather.
       Free, three mornings a week.
     </p>
     <form class="popup-form" id="popup-sub-form" novalidate>
